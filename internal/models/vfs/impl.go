@@ -1,4 +1,4 @@
-package models
+package vfs
 
 import (
 	"fmt"
@@ -8,21 +8,9 @@ import (
 
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/funcs"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 )
 
-type VirtualFileSystem struct {
-	root string
-	// key is the file path
-	Files map[string]FileStatData
-}
-
-func NewVirtualFileSystem() *VirtualFileSystem {
-	return &VirtualFileSystem{
-		root:  settings.Settings.Dir,
-		Files: make(map[string]FileStatData),
-	}
-}
+var _ VirtualFileSystemInterface = (*VirtualFileSystem)(nil)
 
 func (vfs *VirtualFileSystem) Init() error {
 	err := filepath.Walk(vfs.root, func(path string, info os.FileInfo, err error) error {
@@ -60,7 +48,7 @@ func (vfs *VirtualFileSystem) Walk(TriggerFn func(path string), ignoreFilePaths 
 			return err
 		}
 
-		 // update the file if it is not in the list
+		// update the file if it is not in the list
 		if _, ok := vfs.Files[path]; !ok {
 
 			checksum, err := funcs.CalculateChecksum(path)
@@ -76,7 +64,7 @@ func (vfs *VirtualFileSystem) Walk(TriggerFn func(path string), ignoreFilePaths 
 			}
 		}
 
-		 // execute the trigger function if the file is not in the ignored list
+		// execute the trigger function if the file is not in the ignored list
 
 		somethingChange := false
 		whatChanged := ""

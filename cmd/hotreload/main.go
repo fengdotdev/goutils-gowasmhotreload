@@ -6,19 +6,22 @@ import (
 	"time"
 
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/funcs"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/models"
+	"github.com/fengdotdev/goutils-gowasmhotreload/internal/models/vfs"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/server"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 )
 
 func main() {
-	log.Println(msg.MSG.Welcome, settings.Settings.Dir)
-	ignoredFiles := []string{settings.Settings.WasmFile}
+
+	df := settings.DefaultSettings
+
+	log.Println(msg.MSG.Welcome, df.Dir)
+	ignoredFiles := []string{df.WasmFile}
 	somethingChange := false
 	FilenameThatChanged := ""
 	counter := 0
-	vfs := models.NewVirtualFileSystem()
+	vfs := vfs.NewVirtualFileSystemFromSettings(df)
 	err := vfs.Init()
 	if err != nil {
 		panic(err)

@@ -1,4 +1,4 @@
-package models
+package typedef
 
 import "time"
 

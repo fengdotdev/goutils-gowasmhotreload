@@ -2,6 +2,13 @@ package settings
 
 import "time"
 
+type SettingsTemplateInterface interface {
+	GetDir() string
+	GetInterval() time.Duration
+	GetWasmFile() string
+	GetCommand() string
+	GetPort() string
+}
 
 type SettingsTemplate struct {
 	Interval time.Duration
@@ -10,16 +17,11 @@ type SettingsTemplate struct {
 	Command  string
 	Port     string
 }
- 
 
 var DefaultSettings = SettingsTemplate{
-	Interval:1 * time.Second,
-	Dir:"./",
-	WasmFile:"main.wasm",
-	Command:"GOOS=js GOARCH=wasm go build -o main.wasm",
-	Port:":5656",
+	Interval: 1 * time.Second,
+	Dir:      "./",
+	WasmFile: "main.wasm",
+	Command:  "GOOS=js GOARCH=wasm go build -o main.wasm",
+	Port:     ":5656",
 }
-
-
-var Settings = DefaultSettings
-
