@@ -1,0 +1,55 @@
+/* Estilo modo oscuro inspirado en ChatGPT */
+
+:root {
+    --background-color: #1e1e2e;
+    --text-color: #cdd6f4;
+    --primary-color: #89b4fa;
+    --secondary-color: #f5c2e7;
+    --accent-color: #a6e3a1;
+    --border-color: #313244;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #181825;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background: var(--accent-color);
+    color: #1e1e2e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: var(--primary-color);
+}
