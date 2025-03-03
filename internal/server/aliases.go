@@ -1,6 +1,5 @@
 package server
 
+import "github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 
-
-
-type ServerInterface = 
+type Settings = settings.SettingsTemplateInterface

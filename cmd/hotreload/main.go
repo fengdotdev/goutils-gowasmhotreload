@@ -17,27 +17,35 @@ func main() {
 	df := settings.DefaultSettings
 
 	log.Println(msg.MSG.Welcome, df.Dir)
-	ignoredFiles := []string{df.WasmFile}
-	somethingChange := false
-	FilenameThatChanged := ""
-	counter := 0
-	vfs := vfs.NewVirtualFileSystemFromSettings(df)
+
+	vfs := vfs.NewVirtualFileSystemFromSettings(&df)
 	err := vfs.Init()
 	if err != nil {
 		panic(err)
 	}
 
-	svr := server.NewServer()
+	svr := server.NewServerFromSettings(&df)
 
 	go svr.Start()
+
+	watchForChanges(vfs, &df)
+}
+
+func watchForChanges(v *vfs.VirtualFileSystem, s settings.SettingsTemplateInterface) {
+
+	ignoredFiles := []string{s.GetWasmFile()}
+	somethingChange := false
+	FilenameThatChanged := ""
+	counter := 0
+
 	for {
-		time.Sleep(settings.Settings.Interval)
+		time.Sleep(s.GetInterval())
 		if !somethingChange && counter == 0 {
-			fmt.Println(msg.MSG.WatchingChanges, settings.Settings.Dir)
+			fmt.Println(msg.MSG.WatchingChanges, s.GetDir())
 		}
 		counter++
 		// Check for changes in the directory
-		vfs.Walk(func(path string) {
+		v.Walk(func(path string) {
 			somethingChange = true
 			FilenameThatChanged = path
 		}, ignoredFiles)
@@ -45,11 +53,11 @@ func main() {
 		if somethingChange {
 			fmt.Println(msg.MSG.ChangeDetectedIn, FilenameThatChanged)
 
-			err := funcs.CommandExec(settings.Settings.Command)
+			err := funcs.CommandExec(s.GetCommand())
 			if err != nil {
 				fmt.Println(msg.MSG.MsgError, err)
 			} else {
-				fmt.Println(msg.MSG.ExecCommand, settings.Settings.Command)
+				fmt.Println(msg.MSG.ExecCommand, s.GetCommand())
 				fmt.Println(msg.MSG.SusscessfulCompilation)
 			}
 			// Reset the state

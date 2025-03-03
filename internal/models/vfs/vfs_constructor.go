@@ -9,6 +9,6 @@ func NewVirtualFileSystem(root string) *VirtualFileSystem {
 	}
 }
 
-func NewVirtualFileSystemFromSettings(settings *settings.SettingsTemplateInterface) *VirtualFileSystem {
-	return NewVirtualFileSystem((*settings).GetDir())
+func NewVirtualFileSystemFromSettings(settings settings.SettingsTemplateInterface) *VirtualFileSystem {
+	return NewVirtualFileSystem(settings.GetDir())
 }

@@ -2,8 +2,6 @@ package server
 
 import (
 	"net/http"
-
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 )
 
 func NewServer(addrs string, dir string) *Server {
@@ -16,6 +14,6 @@ func NewServer(addrs string, dir string) *Server {
 	}
 }
 
-func NewServerFromSettings(s *settings.SettingsTemplateInterface) *Server {
-	return NewServer(":"+s(*sett).GetPort(), s.GetDir())
+func NewServerFromSettings(s Settings) *Server {
+	return NewServer(s.GetPort(), s.GetDir())
 }
