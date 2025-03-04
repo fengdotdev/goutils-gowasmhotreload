@@ -15,6 +15,8 @@ var _ VirtualFileSystemInterface = (*VirtualFileSystem)(nil)
 
 
 
+
+// TODO DELETED INIT IS REDUNDANT
 func (vfs *VirtualFileSystem) Init() error {
 	err := filepath.Walk(vfs.root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -40,6 +42,8 @@ func (vfs *VirtualFileSystem) Init() error {
 
 	return err
 }
+
+
 
 func (vfs *VirtualFileSystem) Walk(TriggerFn func(path string), ignoreFilePaths []string) error {
 	ignoreFiles := make(map[string]string)
