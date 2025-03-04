@@ -1,25 +1,31 @@
 package server
 
 import (
-	"fmt"
+	"context"
 	"net/http"
-
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
 )
 
 var _ ServerInterface = (*Server)(nil)
 
 type Server struct {
+	stop       chan bool
+	lang       string
 	httpServer *http.Server
 }
 
 func (s *Server) Start() error {
 
-	host := fmt.Sprintf("http://%s", getIp())
-	fmt.Println(msg.MSG.ServerRunningAt, host+s.httpServer.Addr)
 	return s.httpServer.ListenAndServe()
 }
 
-func getIp() string {
-	return "localhost"
+func (s *Server) StartNoBlock() {
+	go s.Start()
+}
+
+func (s *Server) getIp() string {
+	return "localhost:8080"
+}
+
+func (s *Server) Stop() error {
+	return s.httpServer.Shutdown(context.Background())
 }

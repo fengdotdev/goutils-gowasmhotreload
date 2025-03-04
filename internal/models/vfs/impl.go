@@ -12,6 +12,9 @@ import (
 
 var _ VirtualFileSystemInterface = (*VirtualFileSystem)(nil)
 
+
+
+
 func (vfs *VirtualFileSystem) Init() error {
 	err := filepath.Walk(vfs.root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -88,7 +91,9 @@ func (vfs *VirtualFileSystem) Walk(TriggerFn func(path string), ignoreFilePaths 
 					LastCheckSum:       checksum,
 					UpdateAt:           time.Now(),
 				}
-				fmt.Println(msg.MSG.ChangeDetectedIn, path, whatChanged)
+
+				msg := msg.GetMSG(vfs.lang)
+				fmt.Println(msg.GetChangeDetectedIn(path + " " + whatChanged))
 				TriggerFn(path)
 			}
 		}

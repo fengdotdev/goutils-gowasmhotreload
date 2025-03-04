@@ -8,11 +8,12 @@ type SettingsTemplateInterface interface {
 	GetWasmFile() string
 	GetCommand() string
 	GetPort() string
+	GetLang() string
 }
 
-var _ SettingsTemplateInterface = &SettingsTemplate{}
 
 type SettingsTemplate struct {
+	Lang     string
 	Interval time.Duration
 	Dir      string
 	WasmFile string

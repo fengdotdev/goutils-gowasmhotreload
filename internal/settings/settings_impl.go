@@ -23,3 +23,7 @@ func (s *SettingsTemplate) GetCommand() string {
 func (s *SettingsTemplate) GetPort() string {
 	return s.Port
 }
+
+func (s *SettingsTemplate) GetLang() string {
+	return s.Lang
+}
