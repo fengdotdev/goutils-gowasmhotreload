@@ -2,7 +2,7 @@ package settings
 
 import "time"
 
-var DefaultSettings = SettingsTemplate{
+var DefaultSettings = Settings{
 	Interval: 1 * time.Second,
 	Dir:      "./",
 	WasmFile: "main.wasm",

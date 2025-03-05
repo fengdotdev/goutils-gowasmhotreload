@@ -2,28 +2,28 @@ package settings
 
 import "time"
 
-var _ SettingsTemplateInterface = &SettingsTemplate{}
+var _ SettingsInterface = &Settings{}
 
-func (s *SettingsTemplate) GetDir() string {
+func (s *Settings) GetDir() string {
 	return s.Dir
 }
 
-func (s *SettingsTemplate) GetInterval() time.Duration {
+func (s *Settings) GetInterval() time.Duration {
 	return s.Interval
 }
 
-func (s *SettingsTemplate) GetWasmFile() string {
+func (s *Settings) GetWasmFile() string {
 	return s.WasmFile
 }
 
-func (s *SettingsTemplate) GetCommand() string {
+func (s *Settings) GetCommand() string {
 	return s.Command
 }
 
-func (s *SettingsTemplate) GetPort() string {
+func (s *Settings) GetPort() string {
 	return s.Port
 }
 
-func (s *SettingsTemplate) GetLang() string {
+func (s *Settings) GetLang() string {
 	return s.Lang
 }

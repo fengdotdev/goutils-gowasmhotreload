@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/models/detector"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/models/vfs"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/server"
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
@@ -14,7 +13,7 @@ func main() {
 
 	// setup
 
-	df := settings.DefaultSettings
+	sttngs := settings.DefaultSettings
 
 	msg := msg.GetMSG(df.Lang)
 

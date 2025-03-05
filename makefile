@@ -12,3 +12,9 @@ buildl:
 
 	rm -rf ./bin/linux
 	GOOS=linux GOARCH=amd64 go build -o ./bin/linux/hotreload ./cmd/hotreload/main.go
+
+
+
+
+foo:
+	go run ./cmd/sandbox/main.go

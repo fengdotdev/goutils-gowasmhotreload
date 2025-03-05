@@ -2,17 +2,9 @@ package settings
 
 import "time"
 
-type SettingsTemplateInterface interface {
-	GetDir() string
-	GetInterval() time.Duration
-	GetWasmFile() string
-	GetCommand() string
-	GetPort() string
-	GetLang() string
-}
 
 
-type SettingsTemplate struct {
+type Settings struct {
 	Lang     string
 	Interval time.Duration
 	Dir      string

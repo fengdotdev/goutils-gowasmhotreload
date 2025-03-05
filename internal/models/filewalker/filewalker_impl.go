@@ -1,4 +1,4 @@
-package vfs
+package filewalker
 
 import (
 	"fmt"
@@ -10,11 +10,11 @@ import (
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
 )
 
-var _ VirtualFileSystemInterface = (*VirtualFileSystem)(nil)
+var _ FileWalkerInterface = &FileWalker{}
 
-
-
-
+func (fw *FileWalker) Walk(TriggerFn func(path string), ignoreFilePaths []string) error {
+	return nil
+}
 
 // TODO DELETED INIT IS REDUNDANT
 func (vfs *VirtualFileSystem) Init() error {
@@ -42,8 +42,6 @@ func (vfs *VirtualFileSystem) Init() error {
 
 	return err
 }
-
-
 
 func (vfs *VirtualFileSystem) Walk(TriggerFn func(path string), ignoreFilePaths []string) error {
 	ignoreFiles := make(map[string]string)
