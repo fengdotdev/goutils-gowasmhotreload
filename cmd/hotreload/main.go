@@ -1,35 +1,22 @@
 package main
 
 import (
-	"fmt"
 
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/models/detector"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/msg"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/server"
-	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 )
 
 func main() {
 
+
+	// grab flags
+
 	// setup
 
-	sttngs := settings.DefaultSettings
+	// start server
 
-	msg := msg.GetMSG(df.Lang)
+	// start walker
 
-	fmt.Println(msg) // fix
+	// start detector
 
-	svr := server.NewServerFromSettings(&df)
 
-	svr.StartNoBlock()
-
-	vfs := vfs.NewVirtualFileSystemFromSettings(&df)
-	err := vfs.Init()
-	if err != nil {
-		panic(err)
-	}
-
-	det := detector.NewDetector(&df, vfs)
-	det.Detect()
 
 }
