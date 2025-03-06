@@ -1,12 +1,8 @@
 package detector
 
-func NewDetector(s Settings, v FileWalker) *Detector {
+func NewDetector(settings Settings, filewalker FileWalker) *Detector {
 	return &Detector{
-		Settings:        s,
-		Vfs:             v,
-		ignoredFiles:    make([]string, 0),
-		counter:         0,
-		FileThatChanged: "",
-		somethingChange: false,
+		settings:   settings,
+		filewalker: filewalker,
 	}
 }
