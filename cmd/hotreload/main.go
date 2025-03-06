@@ -7,6 +7,22 @@ import (
 	"github.com/fengdotdev/goutils-gowasmhotreload/internal/settings"
 )
 
+
+
+// hot reload compila go wasm y recarga el navegador
+// 1. detecta cambios en el directorio 
+// 2. compila go wasm
+// 3. recarga el navegador
+// 4. repite
+
+
+// que necesitamos?
+// directorio a observar
+// intervalo de tiempo para observar
+// comando para compilar go wasm
+// comando para recargar el navegador
+
+
 func main() {
 
 	// grab flags
